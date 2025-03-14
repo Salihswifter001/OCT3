@@ -1,0 +1,197 @@
+/* src/components/Sidebar.css */
+.sidebar {
+  width: 280px;
+  background-color: var(--background-light);
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--primary-color);
+  box-shadow: 2px 0 10px rgba(0, 255, 255, 0.2);
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 2rem 1rem;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.sidebar-header h2 {
+  color: var(--secondary-color);
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--secondary-color);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  flex: 1;
+}
+
+.menu-item {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.menu-item:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+  border-color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+.menu-item.active {
+  background-color: rgba(0, 255, 255, 0.15);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  width: 30px;
+  text-align: center;
+}
+
+.menu-item span {
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-separator {
+  height: 1px;
+  background: linear-gradient(to right, 
+    transparent, 
+    rgba(0, 255, 255, 0.3),
+    rgba(255, 0, 255, 0.3),
+    transparent
+  );
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.create-playlist-button {
+  margin: 1rem;
+  padding: 1rem;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+}
+
+.create-playlist-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+.plus-icon {
+  font-size: 1.5rem;
+  margin-right: 0.8rem;
+  font-weight: bold;
+  color: var(--background-dark);
+}
+
+.create-playlist-button span {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--background-dark);
+  letter-spacing: 1px;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(224, 224, 224, 0.6);
+  border-top: 1px solid rgba(0, 255, 255, 0.3);
+  margin-top: auto;
+}
+
+/* Scrollbar styling */
+.sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: var(--background-dark);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+
+/* Fire icon animation that we'll use elsewhere */
+.fire-icon {
+  margin-left: 0.5rem;
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.7;
+  }
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--primary-color);
+  }
+  
+  .sidebar-header {
+    padding: 1rem;
+  }
+  
+  .sidebar-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .sidebar-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .menu-item {
+    margin: 0.3rem;
+    padding: 0.7rem 1rem;
+    flex-shrink: 0;
+  }
+  
+  .create-playlist-button {
+    margin: 0.5rem 1rem 1rem;
+  }
+}

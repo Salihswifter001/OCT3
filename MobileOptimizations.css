@@ -1,0 +1,407 @@
+/* src/MobileOptimizations.css */
+/*
+This file contains mobile-specific optimizations to improve performance
+and enhance the user experience on mobile devices.
+It should be imported after other CSS files to override existing styles.
+*/
+
+/* Apply these styles for all mobile devices */
+@media (max-width: 768px) {
+  /* Performance optimizations */
+  * {
+    /* Reduce painting operations during scrolling */
+    will-change: auto !important;
+    /* Optimize for touch */
+    touch-action: manipulation;
+  }
+  
+  /* Disable certain animations for better performance */
+  .wave,
+  .wave1,
+  .wave2,
+  .galaxy-background,
+  body::before {
+    display: none !important; /* Hide heavy background elements */
+  }
+  
+  /* Lighter background effect instead of full complex backgrounds */
+  body {
+    background-image:
+      radial-gradient(circle, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+      radial-gradient(circle, rgba(255, 0, 255, 0.05) 1px, transparent 1px);
+    background-size:
+      20px 20px,
+      30px 30px;
+    background-position:
+      0 0,
+      10px 10px;
+  }
+  
+  /* Reduce shadow effects for better performance */
+  .cyber-card,
+  .prompt-container,
+  .info-container,
+  .music-card,
+  .playlist-card,
+  .profile-panel,
+  .settings-panel,
+  .context-menu {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2) !important;
+  }
+  
+  /* Limit hover effects on touch devices */
+  .genre-chip:hover,
+  .music-card:hover,
+  .playlist-card:hover,
+  .menu-item:hover,
+  .like-button:hover,
+  .play-button:hover,
+  .generate-button:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Only apply transform on active state for better touch feedback */
+  .genre-chip:active,
+  .music-card:active,
+  .playlist-card:active,
+  .menu-item:active,
+  .song-item:active,
+  .track-list-item:active,
+  .generate-button:active {
+    transform: scale(0.98) !important;
+    background-color: rgba(0, 255, 255, 0.15) !important;
+  }
+  
+  /* Make buttons larger for touch targets */
+  .genre-chip,
+  .like-button,
+  .scroll-button,
+  .view-mode-button,
+  .menu-item,
+  .song-item,
+  .track-list-item {
+    min-height: 44px; /* Apple's recommended minimum touch target size */
+  }
+  
+  /* Play button is hidden as requested */
+  .play-button {
+    display: none !important;
+  }
+  
+  /* Play icon is hidden as requested */
+  .play-icon {
+    display: none !important;
+  }
+  
+  /* More compact UI for mobile */
+  .prompt-container,
+  .info-container,
+  .cyber-card {
+    padding: 1rem !important;
+    gap: 0.8rem !important;
+  }
+  
+  .genre-grid {
+    max-height: 120px !important; /* Reduce max height of scrollable areas */
+  }
+  
+  /* Specific optimizations for profile and settings panels */
+  .profile-panel,
+  .settings-panel {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+  }
+  
+  /* Full-bleed audio player for better mobile usage */
+  .audio-player,
+  .music-player {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    border-radius: 0 !important;
+    position: fixed !important;
+    z-index: 1000 !important;
+  }
+  
+  /* Make scrollable content better on touch */
+  .song-list,
+  .track-list,
+  .scrollable-content {
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: y proximity !important;
+  }
+  
+  /* Ensure text is readable */
+  .music-title,
+  .playlist-name,
+  .section-title,
+  .card-title {
+    font-size: 1rem !important;
+  }
+  
+  .music-artist,
+  .playlist-meta,
+  .info-text,
+  .lyrics-header h3 {
+    font-size: 0.9rem !important;
+  }
+  
+  /* Reduce nesting and improve layout */
+  .section-header {
+    margin-bottom: 0.8rem !important;
+  }
+  
+  /* Improve form controls on mobile */
+  .prompt-input,
+  .lyrics-input,
+  .search-input,
+  .profile-input {
+    font-size: 16px !important; /* Prevent iOS zoom on focus */
+  }
+  
+  /* Ensure sidebar is usable on mobile */
+  .view-tabs {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    padding-bottom: 5px !important;
+    scrollbar-width: none !important;
+  }
+  
+  .view-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+/* Ultra-light mode for very low-end devices or battery saving */
+@media (max-width: 480px) {
+  /* Completely disable all animations and transitions */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Simplify gradients */
+  .generate-button,
+  .new-playlist-button,
+  .result-action-button {
+    background-image: none !important;
+    background-color: var(--primary-color) !important;
+  }
+  
+  /* Further reduce max heights */
+  .genre-grid {
+    max-height: 100px !important;
+  }
+  
+  /* Very compact layout */
+  .music-grid,
+  .playlist-grid {
+    gap: 0.8rem !important;
+  }
+  
+  .music-card,
+  .playlist-card {
+    min-width: 120px !important;
+  }
+  
+  /* Simplify artist and genre sections */
+  .artist-avatar {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  /* Extra compact prompt UI */
+  .prompt-input {
+    height: 80px !important;
+  }
+  
+  .lyrics-input {
+    height: 100px !important;
+  }
+  
+  /* Simplify result view */
+  .audio-analysis {
+    padding: 0.8rem !important;
+  }
+  
+  .analysis-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+  }
+  
+  .analysis-item {
+    width: 48% !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Ensure footer is visible but minimal */
+  .footer-content {
+    padding: 0.5rem !important;
+  }
+  
+  /* Optimize playlist detail view for small screens */
+  .playlist-detail-info {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  .playlist-detail-cover {
+    width: 150px !important;
+    height: 150px !important;
+    align-self: center !important;
+  }
+  
+  .playlist-detail-text h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .playlist-detail-text .playlist-meta {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+}
+
+/* Special optimizations for landscape mode on mobile */
+@media (max-width: 950px) and (orientation: landscape) {
+  .app-container {
+    flex-direction: row !important;
+  }
+  
+  .sidebar {
+    width: 200px !important;
+    height: 100vh !important;
+  }
+  
+  .main-content {
+    height: 100vh !important;
+    overflow-y: auto !important;
+  }
+  
+  /* Make scrollable areas horizontal in landscape mode */
+  .genre-grid {
+    max-height: none !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  .genre-chip {
+    flex-shrink: 0 !important;
+  }
+  
+  /* Landscape-specific layout for profile and settings panels */
+  .profile-content,
+  .settings-content {
+    flex-direction: row !important;
+  }
+  
+  .profile-sidebar,
+  .settings-tabs {
+    width: 200px !important;
+    height: auto !important;
+  }
+  
+  /* Optimize music player for landscape mode */
+  .music-player {
+    height: auto !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    padding: 0.5rem 1rem !important;
+  }
+  
+  .music-player .track-info {
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 30% !important;
+  }
+  
+  .music-player .player-controls {
+    width: 40% !important;
+  }
+  
+  .music-player .secondary-controls {
+    width: 20% !important;
+  }
+}
+
+/* Touch device optimization (including iPad)  */
+@media (hover: none) {
+  /* Only show hover effects on explicit touch */
+  .genre-chip:hover,
+  .music-card:hover,
+  .playlist-card:hover,
+  .like-button:hover,
+  .generate-button:hover,
+  .result-action-button:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Add active state feedback */
+  .genre-chip:active,
+  .music-card:active,
+  .playlist-card:active,
+  .like-button:active,
+  .song-item:active,
+  .track-list-item:active,
+  .generate-button:active {
+    opacity: 0.8 !important;
+  }
+  
+  /* Make card overlays visible by default since hover is not reliable */
+  .music-card .card-overlay,
+  .playlist-card .card-overlay {
+    opacity: 0.8 !important;
+  }
+  
+  /* Apply larger touch targets */
+  button,
+  .genre-chip,
+  .music-card-cover,
+  .playlist-card-cover,
+  .like-button,
+  .song-item,
+  .track-list-item {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    cursor: pointer !important;
+  }
+}
+
+/* Reduce motion preference for users who have this setting enabled */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Disable all background animations */
+  .wave-container,
+  .galaxy-background,
+  .cyber-overlay {
+    display: none !important;
+  }
+  
+  /* Static indicators instead of animated ones */
+  .loading-icon {
+    border: none !important;
+    background-color: var(--primary-color) !important;
+    border-radius: 50% !important;
+  }
+  
+  .progress-bar {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,18 @@
+/* src/components/GalaxyBackground.css */
+.galaxy-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2; /* Sitenin tüm içeriğinin arkasında olması için */
+  background-color: var(--background-dark);
+  pointer-events: none; /* Mouse olaylarını altta kalan elementlere geçir */
+}
+
+/* Düşük performanslı cihazlar için animasyonu kapatma seçeneği */
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-background {
+    display: none;
+  }
+}
